@@ -28,7 +28,8 @@ set_seed(42)
 for entry in data:
     # Structure the input prompt for the model.
     model_input = (f"Instruction:{entry['instruction']}\n\n" +
-                   f"Context:{entry['context']}\n\nResponse:")
+                   f"Context:{entry['context']}\n\n" +
+                   "Response:")
 
     # Ensure inputs don't exceed max input length for model.
     if len(model_input) > 1024:
