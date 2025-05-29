@@ -7,7 +7,8 @@ sns.set_style('whitegrid')
 
 
 def plot_results(infiles=['results_single.jsonl', 'results.jsonl'],
-                 labels=['one completion per prompt', 'five completions per prompt'],
+                 labels=['one completion per prompt',
+                         'five completions per prompt'],
                  colours=['forestgreen', 'cornflowerblue'],
                  outfile='all_results.jpg'):
     """Plot histplot of token_per_sec"""
