@@ -25,7 +25,7 @@ generator = pipeline('text-generation', model=MODEL_NAME, max_new_tokens=100)
 tokenizer = GPT2Tokenizer.from_pretrained(MODEL_NAME)
 set_seed(42)
 
-for entry in data:
+for entry in data[:1000]:
     # Structure the input prompt for the model.
     model_input = (f"Instruction:{entry['instruction']}\n\n" +
                    f"Context:{entry['context']}\n\n" +
@@ -40,7 +40,7 @@ for entry in data:
 
     # Time the Generation: (here we return 5 generations for each prompt)
     start = time.time()
-    responses = generator(model_input, num_return_sequences=5)
+    responses = generator(model_input, num_return_sequences=1)
     time_taken = time.time() - start
 
     # For each response, record the number of tokens and append the output
@@ -59,5 +59,5 @@ for entry in data:
                               token_per_sec=round(total_tokens/time_taken, 4))
 
     # Dump result to jsonl file
-    with open("results.jsonl", "a", encoding="UTF-8") as f:
+    with open("results_single.jsonl", "a", encoding="UTF-8") as f:
         f.write(json.dumps(result.model_dump()) + "\n")
