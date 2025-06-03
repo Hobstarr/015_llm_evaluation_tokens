@@ -6,14 +6,16 @@ import matplotlib.pyplot as plt
 
 sns.set_style('whitegrid')
 
-N_COMPLETIONS = 1
+N_COMPLETIONS = 1       #TODO [this could be automated].
+INFILE = 'results_single.jsonl'
+OUTFILE = 'results_single.jpg'
 
 
-def plot_results(outfile='results_single.jpg'):
+def plot_results(outfile=OUTFILE):
     """Plot histplot of token_per_sec"""
 
     # Read in result data
-    with open('results_single.jsonl', 'r', encoding="UTF-8") as f:
+    with open(INFILE, 'r', encoding="UTF-8") as f:
         result_data = [json.loads(line) for line in f][:1000]
 
     # Plot the histplot and savefig
@@ -36,7 +38,7 @@ def print_evaluation_summary():
     :TODO automate the total number of completions - right now is manual."""
 
     # Read in result data
-    with open('results_single.jsonl', 'r', encoding="UTF-8") as f:
+    with open(INFILE, 'r', encoding="UTF-8") as f:
         result_data = [json.loads(line) for line in f][:1000]
 
     # Get specific data
